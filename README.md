@@ -1,133 +1,132 @@
 ❄️ Snowflake – Data Engineering Evaluation Project
 
-DataScientest | Formation Data Scientist / Data Engineer
+DataScientest | Data Scientist / Data Engineer Training
 
-🎯 Objectif du projet
+🎯 Project Objective
 
-Ce projet s’inscrit dans le cadre d’une évaluation technique réalisée chez DataScientest, visant à valider la maîtrise des fondamentaux Snowflake, depuis le chargement de données brutes depuis S3 jusqu’à leur modélisation analytique et leur exploitation via des requêtes métier.
+This project was completed as part of a technical assessment at DataScientest, aimed at validating fundamental Snowflake skills — from loading raw data from S3 to building an analytical model and delivering business-driven queries.
 
-L’approche adoptée est volontairement Data Engineering / Architecte, avec une séparation claire des responsabilités :
+The approach is intentionally Data Engineering / Data Architecture, with a clear separation of responsibilities:
 
-ingestion,
+ingestion
 
-modélisation,
+modeling
 
-transformation,
+transformation
 
-consommation analytique.
+analytical consumption
 
-🧱 Architecture logique du projet
+🧱 Logical Architecture
 
-Le projet suit une architecture analytique classique en trois couches :
+The project follows a classic three-layer analytical architecture:
 
-Zone d’ingestion (raw / staging)
+1. Ingestion Layer (raw / staging)
 
-Chargement de fichiers CSV depuis un bucket S3 Snowflake
+Load CSV files from an S3 bucket into Snowflake
 
-Gestion des erreurs de format et de qualité de données
+Manage format and data quality issues
 
-Contrôle fin des paramètres COPY INTO
+Fine control of COPY INTO parameters
 
-Zone de modélisation (schéma en étoile)
+2. Modeling Layer (star schema)
 
-Transformation des données normalisées
+Transform normalized data
 
-Construction d’un modèle orienté analyse (facts & dimensions)
+Build an analysis-oriented model (facts & dimensions)
 
-Optimisation pour les requêtes analytiques
+Optimize for analytical queries
 
-Zone de consommation
+3. Consumption Layer
 
-Requêtes SQL métier
+Business SQL queries
 
-Résultats persistés dans des fichiers exploitables
+Persist query results into usable files
 
-Logique proche d’un data mart analytique
+Approach similar to an analytical data mart
 
-📦 Contenu de l’archive
-1️⃣ init.sql – Ingestion & initialisation
+📦 Archive Contents
+1️⃣ init.sql – Ingestion & Initialization
 
-Ce script contient :
+This script includes:
 
-La création des tables Snowflake
+Creation of Snowflake tables
 
-Le chargement des données depuis S3
-(s3://course-snowflakes/sample/music/)
+Loading data from S3 (s3://course-snowflakes/sample/music/)
 
-La gestion des cas réels de data engineering :
+Handling real data engineering issues:
 
-mismatch de colonnes CSV
+CSV column mismatch
 
-valeurs numériques invalides
+Invalid numeric values
 
-poursuite du chargement malgré erreurs (ON_ERROR = CONTINUE)
+Continuing load despite errors (ON_ERROR = CONTINUE)
 
-création de file formats personnalisés (csv_error)
+Custom file formats (csv_error)
 
-🎯 Objectif : garantir une ingestion robuste, tolérante aux défauts des données sources.
+🎯 Goal: ensure robust ingestion that tolerates imperfect source data.
 
-2️⃣ doc.txt – Démarche de transformation
+2️⃣ doc.txt – Transformation Approach
 
-Ce document détaille pas à pas :
+This document details, step by step:
 
-La réflexion de transformation des données normalisées
+The reasoning behind transforming normalized data
 
-Le passage vers un schéma en étoile
+The transition to a star schema
 
-Les choix de modélisation pour analyser les tracks présents sur les CDs
+Modeling choices to analyze tracks on CDs
 
-🎯 Objectif : démontrer la capacité à concevoir un modèle analytique, pas seulement à écrire du SQL.
+🎯 Goal: demonstrate the ability to design an analytical model, not just write SQL.
 
-3️⃣ star.sql – Modélisation analytique
+3️⃣ star.sql – Analytical Modeling
 
-Ce script implémente :
+This script implements:
 
-Les tables de faits
+Fact tables
 
-Les tables de dimensions
+Dimension tables
 
-Une structure adaptée aux analyses de performance, durée, genres, artistes et albums
+A structure suitable for analyzing performance, duration, genres, artists, and albums
 
-🎯 Objectif : fournir un socle performant pour l’analyse décisionnelle.
+🎯 Goal: provide a performant foundation for decision-making analytics.
 
-4️⃣ query.sql – Requêtes métier
+4️⃣ query.sql – Business Queries
 
-Ce fichier contient les requêtes répondant à des problématiques analytiques concrètes, par exemple :
+This file contains queries answering concrete analytical questions, such as:
 
-Albums multi-CD
+Multi-CD albums
 
-Morceaux par année de production
+Tracks by production year
 
-Analyse par genre musical
+Genre-based analysis
 
-Performances par artiste
+Artist performance analysis
 
-Durée moyenne des morceaux
+Average track duration
 
-Analyse croisée artistes / playlists / pays
+Cross-analysis between artists, playlists, and countries
 
-🎯 Objectif : démontrer la capacité à traduire des besoins métier en requêtes SQL analytiques.
+🎯 Goal: demonstrate the ability to translate business needs into analytical SQL queries.
 
-5️⃣ answer.txt – Résultats
+5️⃣ answer.txt – Results
 
-Stockage des résultats des requêtes
+Stores the output of the queries
 
-Séparation claire entre calcul et restitution
+Clear separation between computation and reporting
 
-Logique proche d’un livrable client ou BI
+Similar logic to a client or BI deliverable
 
-🧠 Compétences mises en œuvre
+🧠 Skills Demonstrated
 
 ❄️ Snowflake (SQL, COPY INTO, File Formats)
 
-☁️ Ingestion depuis S3
+☁️ Data ingestion from S3
 
-🧩 Modélisation dimensionnelle (schéma en étoile)
+🧩 Dimensional modeling (star schema)
 
-🛠️ Gestion des erreurs de données
+🛠️ Data error handling
 
-📊 SQL analytique avancé
+📊 Advanced analytical SQL
 
-🏗️ Démarche Data Engineer / Architecte
+🏗️ Data Engineering / Data Architecture mindset
 
-📁 Structuration professionnelle d’un projet data
+📁 Professional data project structuring
