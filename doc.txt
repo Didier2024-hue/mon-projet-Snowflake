@@ -1,0 +1,89 @@
+Méthode de création de schéma en étoile de Kimball
+1. Choisir le processus métier à modéliser
+Je commence par choisir le processus métier à modéliser. Pour ce projet, j'ai choisi la gestion d'une collection musicale. L'objectif est de permettre aux utilisateurs de poser des questions sur les pistes, les albums, les artistes, les genres, les types de médias et les listes de lecture.
+2. Choisir le grain
+Je choisis ensuite le grain, qui correspond au niveau de données le plus atomique. Pour notre collection musicale, j'ai choisi le niveau des pistes individuelles. Cela signifie que chaque ligne dans notre table des faits représente une piste unique.
+3. Choisir les dimensions
+Je définis les dimensions, qui sont les tables décrivant les caractéristiques des données dans la table des faits. Pour notre schéma en étoile, j'ai choisi les dimensions suivantes :
+
+Artiste : Contient des informations sur les artistes.
+MediaType : Décrit les types de médias disponibles.
+Genre : Décrit les genres musicaux.
+Album : Contient des informations sur les albums.
+Playlist : Décrit les listes de lecture.
+
+Voici les requêtes SQL que j'ai utilisées pour créer ces tables de dimensions :
+ CopierCREATE OR REPLACE TABLE Artist (
+    ArtistId NUMERIC PRIMARY KEY,
+    Name VARCHAR,
+    Birthyear NUMERIC,
+    Country VARCHAR
+);
+
+CREATE OR REPLACE TABLE MediaType (
+    MediaTypeId NUMERIC PRIMARY KEY,
+    Name VARCHAR
+);
+
+CREATE OR REPLACE TABLE Genre (
+    GenreId NUMERIC PRIMARY KEY,
+    Name VARCHAR
+);
+
+CREATE OR REPLACE TABLE Album (
+    AlbumId NUMERIC PRIMARY KEY,
+    Title VARCHAR,
+    ArtistId NUMERIC,
+    Prod_year NUMERIC,
+    Cd_year NUMERIC,
+    FOREIGN KEY (ArtistId) REFERENCES Artist(ArtistId)
+);
+
+CREATE OR REPLACE TABLE Playlist (
+    PlaylistId NUMERIC PRIMARY KEY,
+    Name VARCHAR
+);
+4. Créer la table des faits
+Je crée la table des faits, qui est la table centrale contenant les mesures numériques à analyser. Pour notre collection musicale, la table des faits est la table Track.
+Avant de créer la table Track, j'ai créé un format de fichier spécifique pour assurer que les données CSV soient correctement importées :
+ CopierCREATE OR REPLACE FILE FORMAT music_track_format
+  TYPE = CSV
+  FIELD_DELIMITER = ','
+  SKIP_HEADER = 1
+  FIELD_OPTIONALLY_ENCLOSED_BY = '"'
+  ESCAPE_UNENCLOSED_FIELD = '\\'
+  NULL_IF = ('NULL', '\\N')
+  ERROR_ON_COLUMN_COUNT_MISMATCH = FALSE;
+Ensuite, j'ai créé la table Track avec des clés étrangères pour lier les pistes aux tables de dimensions :
+ CopierCREATE OR REPLACE TABLE Track (
+    TrackId NUMERIC PRIMARY KEY,
+    Name VARCHAR,
+    MediaTypeId NUMERIC,
+    GenreId NUMERIC,
+    AlbumId NUMERIC,
+    Composer VARCHAR,
+    Milliseconds NUMERIC,
+    Bytes NUMERIC,
+    UnitPrice NUMERIC,
+    FOREIGN KEY (MediaTypeId) REFERENCES MediaType(MediaTypeId),
+    FOREIGN KEY (GenreId) REFERENCES Genre(GenreId),
+    FOREIGN KEY (AlbumId) REFERENCES Album(AlbumId)
+);
+5. Créer les tables de jointure
+Enfin, j'ai créé une table de jointure pour lier les pistes aux listes de lecture :
+ CopierCREATE OR REPLACE TABLE PlaylistTrack (
+    PlaylistId NUMERIC,
+    TrackId NUMERIC,
+    PRIMARY KEY (PlaylistId, TrackId),
+    FOREIGN KEY (PlaylistId) REFERENCES Playlist(PlaylistId),
+    FOREIGN KEY (TrackId) REFERENCES Track(TrackId)
+);
+Validation de l'emplacement
+Avant de commencer la création des tables, j'ai validé que j'étais bien connecté à la bonne base de données, au bon schéma, et que j'utilisais le bon entrepôt et rôle :
+ CopierSELECT
+    CURRENT_DATABASE() AS database,
+    CURRENT_SCHEMA() AS schema,
+    CURRENT_WAREHOUSE() AS warehouse,
+    CURRENT_ROLE() AS role;
+Conclusion
+En suivant ces étapes, j'ai structuré une base de données relationnelle en utilisant un schéma en étoile. Ce schéma permet de gérer efficacement une collection musicale et de répondre à des questions complexes sur les pistes, les albums, les artistes, les genres, les types de médias et les listes de lecture.
