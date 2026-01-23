@@ -1,4 +1,4 @@
-❄️ Snowflake – Data Engineering Evaluation Project
+❄️ Snowflake – Data Engineering  Project
 
 DataScientest | Data Scientist / Data Engineer Training
 
