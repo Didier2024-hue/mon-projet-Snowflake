@@ -8,7 +8,7 @@ USE WAREHOUSE WAREHOUSE_DST;
 -- =============================================
 -- CREATION DU STAGE
 -- =============================================
--- Supprime les fichiers dans results 
+-- Supprime les fichiers dans results (s’il existe)
 REMOVE @MY_STAGE/results;
 
 -- Crée ou remplace le stage

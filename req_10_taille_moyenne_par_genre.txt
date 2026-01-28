@@ -1,0 +1,5 @@
+Rock|8428.15
+Jazz|4554.49
+Metal|410638.39
+Alternative & Punk|8554.07
+Rock And Roll|4371.87

@@ -1,0 +1,18 @@
+AC/DC|1629
+Accept|504
+Alanis Morissette|81
+Alice In Chains|579
+Aerosmith|12
+Antônio Carlos Jobim|58
+Apocalyptica|48
+Audioslave|58
+BackBeat|24
+Black Label Society|91
+Black Sabbath|63
+Body Count|13
+Bruce Dickinson|93
+Buddy Guy|26
+Caetano Veloso|81
+Chico Buarque|40
+Chico Science & Nação Zumbi|75
+Billy Cobham|28
