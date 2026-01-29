@@ -1,20 +1,16 @@
-❄️ Snowflake – Data Engineering  Project
+❄️ Snowflake 
 
-DataScientest | Data Scientist / Data Engineer Training
 
 🎯 Project Objective
 
-This project was completed as part of a technical assessment at DataScientest, aimed at validating fundamental Snowflake skills — from loading raw data from S3 to building an analytical model and delivering business-driven queries.
+Data Engineering | Cloud Analytics Pipeline (Snowflake + S3)
+Project delivered as an independent consultant
 
-The approach is intentionally Data Engineering / Data Architecture, with a clear separation of responsibilities:
+Developed an end-to-end data pipeline for a business analytics use case. 
 
-ingestion
+The project involved loading raw data from S3 into Snowflake, implementing a multi-stage data model with clear separation of concerns, and delivering business-ready analytical queries.
 
-modeling
-
-transformation
-
-analytical consumption
+Focus: A production-oriented, architectural approach ensuring data integrity, performance, and clarity across each layer: ingestion → modeling → transformation → consumption.
 
 🧱 Logical Architecture
 
