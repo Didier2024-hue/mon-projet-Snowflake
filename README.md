@@ -4,7 +4,6 @@
 🎯 Project Objective
 
 Data Engineering | Cloud Analytics Pipeline (Snowflake + S3)
-Project delivered as an independent consultant
 
 Developed an end-to-end data pipeline for a business analytics use case. 
 
